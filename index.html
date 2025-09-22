@@ -5,113 +5,310 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Toko Sembako — "Sejahtera"</title>
-    <meta name="description" content="Landing page untuk Toko Sembako - kebutuhan pokok harian." />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 
 <body>
-    <header>
-        <h1>Toko Sembako "Sejahtera"</h1>
-        <p>Menyediakan kebutuhan pokok harian dengan harga terjangkau.</p>
+    <!-- Header Atas -->
+    <header class="top-header">
+        <div class="container flex-between">
+            <div class="logo">
+                <img style="width: 40px;height: 40px;object-fit: contain;"
+                    src="https://png.pngtree.com/png-clipart/20230922/original/pngtree-store-logo-icon-grocery-architecture-shopping-vector-png-image_12529212.png"
+                    alt="Logo Toko Sembako" />
+                <span>Toko Sembako "Sejahtera"</span>
+            </div>
 
-        <nav aria-label="Navigasi utama">
-            <ul>
-                <li><a href="#home">Beranda</a></li>
-                <li><a href="#produk">Produk</a></li>
-                <li><a href="#tentang">Tentang Kami</a></li>
-                <li><a href="#kontak">Kontak</a></li>
-            </ul>
-        </nav>
+            <!-- Search Bar -->
+            <form class="search-bar" aria-label="Cari produk">
+                <input type="text" placeholder="Cari produk favoritmu disini.." />
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+
+            <!-- Icon + Button -->
+            <div class="header-actions flex">
+                <a href="#" class="icon-btn"><i class="fa fa-shopping-basket"></i><span class="badge">0</span></a>
+                <a href="#" class="icon-btn"><i class="fa fa-heart"></i><span class="badge">0</span></a>
+                <a href="#login" class="btn btn-primary"><i class="fa fa-sign-in-alt"></i> Masuk / Daftar</a>
+            </div>
+        </div>
     </header>
 
+    <nav class="main-nav" aria-label="Navigasi utama">
+        <div class="container">
+            <ul class="nav-list flex">
+                <li><a href="#home" class="nav-link"><i class="fa fa-home"></i> Beranda</a></li>
+                <li><a href="#produk" class="nav-link"><i class="fa fa-shopping-cart"></i> Produk</a></li>
+                <li><a href="#kategori" class="nav-link"><i class="fa fa-th"></i> Kategori</a></li>
+                <li><a href="#afiliasi" class="nav-link"><i class="fa fa-handshake"></i> Afiliasi</a></li>
+                <li><a href="#blog" class="nav-link"><i class="fa fa-rss"></i> Blog</a></li>
+                <li><a href="#info" class="nav-link"><i class="fa fa-info-circle"></i> Info</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <main>
-        <section id="home" aria-labelledby="home-heading">
-            <h2 id="home-heading">Selamat Datang</h2>
-            <p>Selamat datang di Toko Sembako "Sejahtera". Kami menyediakan beras, minyak, gula, dan kebutuhan pokok
-                lainnya.</p>
+        <section id="home" class="hero-section">
+            <div class="container">
+                <h2 class="hero-title">Selamat Datang di Toko Sembako "Sejahtera"</h2>
+                <p class="hero-desc">Kami menyediakan beras, minyak, gula, dan kebutuhan pokok lainnya dengan kualitas
+                    terbaik serta harga bersaing.</p>
+                <a href="#produk" class="btn btn-primary">Lihat Produk</a>
+            </div>
         </section>
 
-        <section id="produk" aria-labelledby="produk-heading">
-            <h2 id="produk-heading">Produk Unggulan</h2>
-
-            <article aria-labelledby="p1-title">
-                <h3 id="p1-title">Beras Premium 5kg</h3>
-                <img src="https://mitra-sembako.id/blackexpo/uploads/120240521195552.jpg" alt="Beras Premium 5kg"
-                    width="200" />
-                <p>Deskripsi singkat produk: beras kualitas baik, butir pulen.</p>
-            </article>
-
-            <article aria-labelledby="p2-title">
-                <h3 id="p2-title">Minyak Goreng 2L</h3>
-                <img src="https://mitra-sembako.id/blackexpo/uploads/120240501140359.jpg" alt="Minyak Goreng 2L"
-                    width="200" />
-                <p>Deskripsi singkat produk: minyak goreng kemasan botol 2 liter.</p>
-            </article>
-
-            <article aria-labelledby="p3-title">
-                <h3 id="p3-title">Gula Pasir 1kg</h3>
-                <img src="https://mitra-sembako.id/blackexpo/uploads/120240507151740.jpg" alt="Gula Pasir 1kg"
-                    width="200" />
-                <p>Deskripsi singkat produk: gula pasir serbaguna untuk rumah tangga.</p>
-            </article>
+        <section id="kategori" class="category-section">
+            <div class="container">
+                <h2 class="section-title">Kategori Produk</h2>
+                <div class="grid-4 category-grid">
+                    <div class="category-card">
+                        <img src="https://www.bing.com/th/id/OIP.DnglTAn-iSx3uhvkjShwQgHaE8?w=276&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2"
+                            alt="Beras" class="category-img" />
+                        <span>Beras</span>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://th.bing.com/th/id/OIP.KHj-OY82K-KaLEEA3XTnOAHaEK?w=298&h=180&c=7&r=0&o=7&dpr=1.4&pid=1.7&rm=3"
+                            alt="Bumbu Masakan" class="category-img" />
+                        <span>Bumbu Masakan</span>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://th.bing.com/th/id/OIP.1d7q1gcoL83fFvqT2Y6wCAHaHa?w=174&h=180&c=7&r=0&o=7&dpr=1.4&pid=1.7&rm=3"
+                            alt="Detergent" class="category-img" />
+                        <span>Detergent</span>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://th.bing.com/th/id/OIP.mAHiipFUcc1ib9sXohSlsgHaE8?w=232&h=180&c=7&r=0&o=7&dpr=1.4&pid=1.7&rm=3"
+                            alt="Gula Pasir" class="category-img" />
+                        <span>Gula Pasir</span>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://th.bing.com/th/id/OIP.EFbo57otWokjTUoM9KWg6QHaHa?w=167&h=180&c=7&r=0&o=7&dpr=1.4&pid=1.7&rm=3"
+                            alt="Ikan Kaleng" class="category-img" />
+                        <span>Ikan Kaleng</span>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://wiratech.co.id/wp-content/uploads/2018/10/Cara-Membuat-Kecap.jpg" alt="Kecap"
+                            class="category-img" />
+                        <span>Kecap</span>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://th.bing.com/th/id/OIP.SviccsbkJbiMHlVVeFHNDAHaHa?w=170&h=180&c=7&r=0&o=7&dpr=1.4&pid=1.7&rm=3"
+                            alt="Kopi Saset" class="category-img" />
+                        <span>Kopi Saset</span>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://th.bing.com/th/id/OIP.DeY61yxC2azqR64Sp5JE7QHaEc?w=279&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7"
+                            alt="Mie Instan" class="category-img" />
+                        <span>Mie Instan</span>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://th.bing.com/th/id/OIP.SMBt_ixv5QoXRwict-vZ3wAAAA?w=230&h=189&c=7&r=0&o=5&dpr=1.4&pid=1.7"
+                            alt="Minuman" class="category-img" />
+                        <span>Minuman</span>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://th.bing.com/th/id/OIP.ANetLfS5YhWw2F6X11nx9AHaEB?w=279&h=180&c=7&r=0&o=7&dpr=1.4&pid=1.7&rm=3"
+                            alt="Minyak Goreng" class="category-img" />
+                        <span>Minyak Goreng</span>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://th.bing.com/th/id/OIP.XL8hOyCYSIaNWrIJG0NChwHaEK?w=290&h=180&c=7&r=0&o=7&dpr=1.4&pid=1.7&rm=3"
+                            alt="Pasta Gigi" class="category-img" />
+                        <span>Pasta Gigi</span>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://tse1.mm.bing.net/th/id/OIP.MeOMpc_YKn7O_RSZOmoxiwHaFj?pid=ImgDet&w=195&h=146&c=7&dpr=1,4&o=7&rm=3"
+                            alt="Pembalut" class="category-img" />
+                        <span>Pembalut</span>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="tentang" aria-labelledby="tentang-heading">
-            <h2 id="tentang-heading">Tentang Kami</h2>
-            <p>Toko Sembako "Sejahtera" berdedikasi menyediakan kebutuhan pokok untuk keluarga Anda dengan pelayanan
-                ramah dan pengiriman cepat.</p>
-
-            <aside aria-labelledby="value-heading">
-                <h3 id="value-heading">Nilai Kami</h3>
-                <ul>
-                    <li>Kualitas</li>
-                    <li>Ketepatan pengiriman</li>
-                    <li>Harga bersaing</li>
-                </ul>
-            </aside>
+        <section id="produk" class="product-section">
+            <div class="container">
+                <h2 class="section-title"><i class="fa fa-shopping-bag"></i> PRODUK TERBARU</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="https://id-test-11.slatic.net/p/6b9e11a95c3427e4def1f12d77f02aea.jpg"
+                            alt="ABC Kecap Manis (700 mL)" class="product-img" />
+                        <div class="product-info">
+                            <span class="product-location"><i class="fa fa-map-marker-alt"></i> Kota Jakarta
+                                Selatan</span>
+                            <h3 class="product-title">ABC Kecap Manis (700 mL)</h3>
+                            <div class="product-price-group">
+                                <span class="product-price-old">Rp. 30.000</span>
+                                <span class="product-discount">28%</span>
+                            </div>
+                            <span class="product-price-new">Rp. 21.500</span>
+                        </div>
+                        <div class="product-meta">
+                            <span><i class="fa fa-gift"></i> 419</span>
+                            <span><i class="fa fa-star" style="color: #f5b301;"></i> 5</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="wishlist"><i class="fa fa-heart"></i> wishlist</a>
+                            <a href="#" class="cart"><i class="fa fa-shopping-cart"></i> +keranjang</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://th.bing.com/th/id/OIP.cDAM3wdTplvBhylxWZwPbgHaHa?w=200&h=200&c=7&r=0&o=7&dpr=1.4&pid=1.7&rm=3"
+                            alt="minyak sunco" class="product-img" />
+                        <div class="product-info">
+                            <span class="product-location"><i class="fa fa-map-marker-alt"></i> Kota Jakarta
+                                Selatan</span>
+                            <h3 class="product-title">Minyak Goreng SunCO 2 Liter</h3>
+                            <div class="product-price-group">
+                                <span class="product-price-old">Rp. 45.000</span>
+                                <span class="product-discount">23%</span>
+                            </div>
+                            <span class="product-price-new">Rp. 34.500</span>
+                        </div>
+                        <div class="product-meta">
+                            <span><i class="fa fa-gift"></i> 64</span>
+                            <span><i class="fa fa-star" style="color: #f5b301;"></i> 5</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="wishlist"><i class="fa fa-heart"></i> wishlist</a>
+                            <a href="#" class="cart"><i class="fa fa-shopping-cart"></i> +keranjang</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://www.bing.com/th/id/OIP.QVYNJf5UpTJJKQ3GF675KQHaHa?w=195&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2"
+                            alt="bras sania" class="product-img" />
+                        <div class="product-info">
+                            <span class="product-location"><i class="fa fa-map-marker-alt"></i> Kota Jakarta
+                                Selatan</span>
+                            <h3 class="product-title">Beras Sania Premiun 2,5 kg</h3>
+                            <div class="product-price-group">
+                                <span class="product-price-old">Rp. 50.000</span>
+                                <span class="product-discount">28%</span>
+                            </div>
+                            <span class="product-price-new">Rp. 36.000</span>
+                        </div>
+                        <div class="product-meta">
+                            <span><i class="fa fa-gift"></i> 548</span>
+                            <span><i class="fa fa-star" style="color: #f5b301;"></i> 5</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="wishlist"><i class="fa fa-heart"></i> wishlist</a>
+                            <a href="#" class="cart"><i class="fa fa-shopping-cart"></i> +keranjang</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://www.bing.com/th/id/OIP.niosVYrsKQR_HjcHt1iPuQHaHa?w=208&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2"
+                            alt="garam cap jempol" class="product-img" />
+                        <div class="product-info">
+                            <span class="product-location"><i class="fa fa-map-marker-alt"></i> Kota Jakarta
+                                Selatan</span>
+                            <h3 class="product-title">Garam Cap Jempol 250 g</h3>
+                            <div class="product-price-group">
+                                <span class="product-price-old">Rp. 5.000</span>
+                                <span class="product-discount">10%</span>
+                            </div>
+                            <span class="product-price-new">Rp. 4.500</span>
+                        </div>
+                        <div class="product-meta">
+                            <span><i class="fa fa-gift"></i> 175</span>
+                            <span><i class="fa fa-star" style="color: #f5b301;"></i> 5</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="wishlist"><i class="fa fa-heart"></i> wishlist</a>
+                            <a href="#" class="cart"><i class="fa fa-shopping-cart"></i> +keranjang</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="kontak" aria-labelledby="kontak-heading">
-            <h2 id="kontak-heading">Kontak & Lokasi</h2>
-            <p>Alamat: Jl.Tanjung Santan No. 1, Kota Samarinda.</p>
-            <p>Telp / WA: 0812-xxxx-xxxx</p>
+        <section class="testimonial-section">
+            <div class="container">
+                <h2 class="section-title">Testimoni Pelanggan</h2>
+                <div class="grid-2">
+                    <div class="testimonial-card">
+                        <p>"Pelayanan cepat, produk berkualitas. Sangat puas belanja di sini!"</p>
+                        <span>- Ibu Sari</span>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Harga bersaing dan pengiriman tepat waktu. Recomended!"</p>
+                        <span>- Pak Adi</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <form action="#" method="post" aria-label="Form kontak">
-                <fieldset>
-                    <legend>Kirimi kami pesan singkat</legend>
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title">FAQ</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h4>Apa saja metode pembayaran yang tersedia?</h4>
+                        <p>Kami menerima transfer bank, e-wallet, dan COD.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Apakah pengiriman bisa ke seluruh Indonesia?</h4>
+                        <p>Ya, kami melayani pengiriman ke seluruh Indonesia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tentang" class="about-section">
+            <div class="container grid-2">
+                <div>
+                    <h2 class="section-title">Tentang Kami</h2>
                     <p>
-                        <label for="nama">Nama</label><br />
-                        <input id="nama" name="nama" type="text" required />
+                        Toko Sembako "Sejahtera" berdedikasi menyediakan kebutuhan pokok untuk keluarga Anda dengan
+                        pelayanan ramah dan pengiriman cepat. Kami percaya kualitas dan harga bersaing adalah kunci
+                        kepuasan pelanggan.
                     </p>
-                    <p>
-                        <label for="email">Email</label><br />
-                        <input id="email" name="email" type="email" required />
-                    </p>
-                    <p>
-                        <label for="pesan">Pesan</label><br />
-                        <textarea id="pesan" name="pesan" rows="4" required></textarea>
-                    </p>
-                    <p>
-                        <button type="submit">Kirim</button>
-                    </p>
-                </fieldset>
-            </form>
+                    <ul class="value-list">
+                        <li>Kualitas terbaik</li>
+                        <li>Pengiriman tepat waktu</li>
+                        <li>Harga bersaing</li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="https://img.freepik.com/free-photo/food-ingredients-wooden-table_23-2148746094.jpg"
+                        alt="Tentang Kami - Toko Sembako" class="about-img" />
+                </div>
+            </div>
+        </section>
+
+        <section id="kontak" class="contact-section">
+            <div class="container grid-2">
+                <div>
+                    <h2 class="section-title">Kontak & Lokasi</h2>
+                    <p><strong>Alamat:</strong> Jl. Tanjung Santan No. 1, Kota Samarinda.</p>
+                    <p><strong>Telp/WA:</strong> 0812-xxxx-xxxx</p>
+                    <p><strong>Email:</strong> info@sembakosejahtera.com</p>
+                </div>
+                <form action="#" method="post" class="contact-form" aria-label="Form kontak">
+                    <fieldset>
+                        <legend>Kirimi Kami Pesan</legend>
+                        <input type="text" name="nama" placeholder="Nama" required />
+                        <input type="email" name="email" placeholder="Email" required />
+                        <textarea name="pesan" rows="4" placeholder="Pesan Anda" required></textarea>
+                        <button type="submit" class="btn btn-primary">Kirim</button>
+                    </fieldset>
+                </form>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <section aria-labelledby="footer-info">
-            <h2 id="footer-info">Informasi</h2>
+    <footer class="site-footer">
+        <div class="container flex-between">
             <p>&copy; <span id="tahun">2025</span> Toko Sembako "Sejahtera". Semua hak dilindungi.</p>
-            <p>Referensi desain / inspirasi: <a href="https://mitra-sembako.id" target="_blank"
-                    rel="noopener noreferrer">mitra-sembako.id</a></p>
-        </section>
-
-        <nav aria-label="Footer navigation">
-            <ul>
-                <li><a href="#privacy">Kebijakan Privasi</a></li>
-                <li><a href="#terms">Syarat & Ketentuan</a></li>
-            </ul>
-        </nav>
+            <nav aria-label="Footer navigation">
+                <ul class="nav-list flex">
+                    <li><a href="#privacy" class="nav-link">Kebijakan Privasi</a></li>
+                    <li><a href="#terms" class="nav-link">Syarat & Ketentuan</a></li>
+                </ul>
+            </nav>
+        </div>
+        <p class="ref">Referensi desain: <a href="https://mitra-sembako.id" target="_blank"
+                rel="noopener noreferrer">mitra-sembako.id</a></p>
     </footer>
 </body>
 
