@@ -1,10 +1,10 @@
-/* Reset & Base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html,
 body {
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
@@ -12,6 +12,7 @@ body {
     background: #f9f9f9;
     max-width: 100%;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 a {
@@ -654,11 +655,6 @@ img {
         gap: 1.2rem;
     }
 
-    .hero-section {
-        padding: 3rem 0.5rem;
-        background-size: cover;
-    }
-
     .hero-title {
         font-size: 1.3rem;
     }
@@ -670,6 +666,7 @@ img {
     .hero-section {
         padding: 2.5rem 0.5rem;
         min-height: 200px;
+        background-size: cover;
     }
 
     .section-title {
