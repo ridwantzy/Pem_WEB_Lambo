@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+// Klo belum login
+if (!isset($_SESSION['username'])) {
+    $next = isset($_GET['next']) ? urlencode($_GET['next']) : 'dashboard';
+    header('Location: login.php?next=' . $next);
+    exit;
+}
+
+$username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
+
+$v = file_exists(__DIR__ . '/script.js') ? filemtime(__DIR__ . '/script.js') : time();
+?>
 <!doctype html>
 <html lang="id">
 
@@ -6,7 +20,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Toko Sembako — "Sejahtera"</title>
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 
 <body>
@@ -22,14 +35,19 @@
             <!-- Search Bar -->
             <form class="search-bar" aria-label="Cari produk">
                 <input type="text" placeholder="Cari produk favoritmu disini.." />
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <button type="submit">🔍</button>
             </form>
 
-            <!-- Icon + Button -->
             <div class="header-actions flex">
-                <a href="#" class="icon-btn"><i class="fa fa-shopping-basket"></i><span class="badge">0</span></a>
-                <a href="#" class="icon-btn"><i class="fa fa-heart"></i><span class="badge">0</span></a>
-                <a href="#login" class="btn btn-primary"><i class="fa fa-sign-in-alt"></i> Masuk / Daftar</a>
+                <a href="#" class="icon-btn">🛒<span class="badge">0</span></a>
+                <a href="#" class="icon-btn">❤️<span class="badge">0</span></a>
+
+                <div style="display:flex;align-items:center;gap:.5rem;">
+                    <span style="color:#fff;background:#3a3a3a;padding:.3rem .6rem;border-radius:4px;">Halo, <?php echo $username; ?></span>
+                    <a href="logout.php" class="btn btn-ghost" style="text-decoration:none;color:#333;background:#fff;padding:.4rem .6rem;border-radius:4px;">
+                        ⎋ Keluar
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -37,12 +55,12 @@
     <nav class="main-nav" aria-label="Navigasi utama">
         <div class="container">
             <ul class="nav-list flex">
-                <li><a href="#home" class="nav-link"><i class="fa fa-home"></i> Beranda</a></li>
-                <li><a href="#produk" class="nav-link"><i class="fa fa-shopping-cart"></i> Produk</a></li>
-                <li><a href="#kategori" class="nav-link"><i class="fa fa-th"></i> Kategori</a></li>
-                <li><a href="#afiliasi" class="nav-link"><i class="fa fa-handshake"></i> Afiliasi</a></li>
-                <li><a href="#blog" class="nav-link"><i class="fa fa-rss"></i> Blog</a></li>
-                <li><a href="#info" class="nav-link"><i class="fa fa-info-circle"></i> Info</a></li>
+                <li><a href="#home" class="nav-link">🏠 Beranda</a></li>
+                <li><a href="#produk" class="nav-link">🛍️ Produk</a></li>
+                <li><a href="#kategori" class="nav-link">🗂️ Kategori</a></li>
+                <li><a href="#afiliasi" class="nav-link">🤝 Afiliasi</a></li>
+                <li><a href="#blog" class="nav-link">📰 Blog</a></li>
+                <li><a href="#info" class="nav-link">ℹ️ Info</a></li>
             </ul>
         </div>
     </nav>
@@ -127,14 +145,13 @@
 
         <section id="produk" class="product-section">
             <div class="container">
-                <h2 class="section-title"><i class="fa fa-shopping-bag"></i> PRODUK TERBARU</h2>
+                <h2 class="section-title">🛍️ PRODUK TERBARU</h2>
                 <div class="product-grid">
                     <div class="product-card">
                         <img src="https://id-test-11.slatic.net/p/6b9e11a95c3427e4def1f12d77f02aea.jpg"
                             alt="ABC Kecap Manis (700 mL)" class="product-img" />
                         <div class="product-info">
-                            <span class="product-location"><i class="fa fa-map-marker-alt"></i> Kota Jakarta
-                                Selatan</span>
+                            <span class="product-location">📍 Kota Jakarta Selatan</span>
                             <h3 class="product-title">ABC Kecap Manis (700 mL)</h3>
                             <div class="product-price-group">
                                 <span class="product-price-old">Rp. 30.000</span>
@@ -143,20 +160,19 @@
                             <span class="product-price-new">Rp. 21.500</span>
                         </div>
                         <div class="product-meta">
-                            <span><i class="fa fa-gift"></i> 419</span>
-                            <span><i class="fa fa-star" style="color: #f5b301;"></i> 5</span>
+                            <span>🎁 419</span>
+                            <span>⭐ 5</span>
                         </div>
                         <div class="product-actions">
-                            <a href="#" class="wishlist"><i class="fa fa-heart"></i> wishlist</a>
-                            <a href="#" class="cart"><i class="fa fa-shopping-cart"></i> +keranjang</a>
+                            <a href="#" class="wishlist">❤️ wishlist</a>
+                            <a href="#" class="cart">🛒 +keranjang</a>
                         </div>
                     </div>
                     <div class="product-card">
                         <img src="https://th.bing.com/th/id/OIP.cDAM3wdTplvBhylxWZwPbgHaHa?w=200&h=200&c=7&r=0&o=7&dpr=1.4&pid=1.7&rm=3"
                             alt="minyak sunco" class="product-img" />
                         <div class="product-info">
-                            <span class="product-location"><i class="fa fa-map-marker-alt"></i> Kota Jakarta
-                                Selatan</span>
+                            <span class="product-location">📍 Kota Jakarta Selatan</span>
                             <h3 class="product-title">Minyak Goreng SunCO 2 Liter</h3>
                             <div class="product-price-group">
                                 <span class="product-price-old">Rp. 45.000</span>
@@ -165,20 +181,19 @@
                             <span class="product-price-new">Rp. 34.500</span>
                         </div>
                         <div class="product-meta">
-                            <span><i class="fa fa-gift"></i> 64</span>
-                            <span><i class="fa fa-star" style="color: #f5b301;"></i> 5</span>
+                            <span>🎁 64</span>
+                            <span>⭐ 5</span>
                         </div>
                         <div class="product-actions">
-                            <a href="#" class="wishlist"><i class="fa fa-heart"></i> wishlist</a>
-                            <a href="#" class="cart"><i class="fa fa-shopping-cart"></i> +keranjang</a>
+                            <a href="#" class="wishlist">❤️ wishlist</a>
+                            <a href="#" class="cart">🛒 +keranjang</a>
                         </div>
                     </div>
                     <div class="product-card">
                         <img src="https://www.bing.com/th/id/OIP.QVYNJf5UpTJJKQ3GF675KQHaHa?w=195&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2"
-                            alt="bras sania" class="product-img" />
+                            alt="beras sania" class="product-img" />
                         <div class="product-info">
-                            <span class="product-location"><i class="fa fa-map-marker-alt"></i> Kota Jakarta
-                                Selatan</span>
+                            <span class="product-location">📍 Kota Jakarta Selatan</span>
                             <h3 class="product-title">Beras Sania Premiun 2,5 kg</h3>
                             <div class="product-price-group">
                                 <span class="product-price-old">Rp. 50.000</span>
@@ -187,20 +202,19 @@
                             <span class="product-price-new">Rp. 36.000</span>
                         </div>
                         <div class="product-meta">
-                            <span><i class="fa fa-gift"></i> 548</span>
-                            <span><i class="fa fa-star" style="color: #f5b301;"></i> 5</span>
+                            <span>🎁 548</span>
+                            <span>⭐ 5</span>
                         </div>
                         <div class="product-actions">
-                            <a href="#" class="wishlist"><i class="fa fa-heart"></i> wishlist</a>
-                            <a href="#" class="cart"><i class="fa fa-shopping-cart"></i> +keranjang</a>
+                            <a href="#" class="wishlist">❤️ wishlist</a>
+                            <a href="#" class="cart">🛒 +keranjang</a>
                         </div>
                     </div>
                     <div class="product-card">
                         <img src="https://www.bing.com/th/id/OIP.niosVYrsKQR_HjcHt1iPuQHaHa?w=208&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2"
                             alt="garam cap jempol" class="product-img" />
                         <div class="product-info">
-                            <span class="product-location"><i class="fa fa-map-marker-alt"></i> Kota Jakarta
-                                Selatan</span>
+                            <span class="product-location">📍 Kota Jakarta Selatan</span>
                             <h3 class="product-title">Garam Cap Jempol 250 g</h3>
                             <div class="product-price-group">
                                 <span class="product-price-old">Rp. 5.000</span>
@@ -209,12 +223,12 @@
                             <span class="product-price-new">Rp. 4.500</span>
                         </div>
                         <div class="product-meta">
-                            <span><i class="fa fa-gift"></i> 175</span>
-                            <span><i class="fa fa-star" style="color: #f5b301;"></i> 5</span>
+                            <span>🎁 175</span>
+                            <span>⭐ 5</span>
                         </div>
                         <div class="product-actions">
-                            <a href="#" class="wishlist"><i class="fa fa-heart"></i> wishlist</a>
-                            <a href="#" class="cart"><i class="fa fa-shopping-cart"></i> +keranjang</a>
+                            <a href="#" class="wishlist">❤️ wishlist</a>
+                            <a href="#" class="cart">🛒 +keranjang</a>
                         </div>
                     </div>
                 </div>
@@ -309,7 +323,7 @@
         <p class="ref">Referensi desain: <a href="https://mitra-sembako.id" target="_blank"
                 rel="noopener noreferrer">mitra-sembako.id</a></p>
     </footer>
-    <script src="script.js"></script>
+    <script src="script.js?v=<?php echo $v; ?>"></script>
 </body>
 
 </html>
