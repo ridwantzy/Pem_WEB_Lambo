@@ -8,7 +8,16 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
+require_once __DIR__ . '/koneksi.php';
+
 $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
+
+$products = [];
+$res = $mysqli->query("SELECT id, title, location, price, price_old, discount, image_url FROM products ORDER BY id DESC");
+if ($res) {
+    while ($row = $res->fetch_assoc()) $products[] = $row;
+    $res->free();
+}
 
 $v = file_exists(__DIR__ . '/script.js') ? filemtime(__DIR__ . '/script.js') : time();
 ?>
@@ -145,92 +154,49 @@ $v = file_exists(__DIR__ . '/script.js') ? filemtime(__DIR__ . '/script.js') : t
 
         <section id="produk" class="product-section">
             <div class="container">
-                <h2 class="section-title">🛍️ PRODUK TERBARU</h2>
+                <h2 class="section-title">🛍️ PRODUK TERBARU
+                    <!-- tombol/tautan kecil ke halaman CRUD -->
+                    <a href="crud.php" style="margin-left:12px;font-size:0.9rem;padding:6px 10px;background:#fff;border-radius:6px;border:1px solid #d0d7de;text-decoration:none;color:#333;">
+                        Kelola (CRUD)
+                    </a>
+                </h2>
+
+                <!-- Ganti hardcoded product cards dengan data dari database -->
                 <div class="product-grid">
-                    <div class="product-card">
-                        <img src="https://id-test-11.slatic.net/p/6b9e11a95c3427e4def1f12d77f02aea.jpg"
-                            alt="ABC Kecap Manis (700 mL)" class="product-img" />
-                        <div class="product-info">
-                            <span class="product-location">📍 Kota Jakarta Selatan</span>
-                            <h3 class="product-title">ABC Kecap Manis (700 mL)</h3>
-                            <div class="product-price-group">
-                                <span class="product-price-old">Rp. 30.000</span>
-                                <span class="product-discount">28%</span>
+                    <?php if (empty($products)): ?>
+                        <p>Tidak ada produk di database. Silakan tambah lewat <a href="crud.php">Kelola (CRUD)</a>.</p>
+                    <?php else: foreach ($products as $p): ?>
+                        <div class="product-card">
+                            <img src="<?php echo $p['image_url'] ? htmlspecialchars($p['image_url'], ENT_QUOTES, 'UTF-8') : 'https://via.placeholder.com/400x220?text=No+Image'; ?>"
+                                alt="<?php echo htmlspecialchars($p['title'], ENT_QUOTES, 'UTF-8'); ?>" class="product-img" />
+                            <div class="product-info">
+                                <span class="product-location">📍 <?php echo htmlspecialchars($p['location'], ENT_QUOTES, 'UTF-8'); ?></span>
+                                <h3 class="product-title"><?php echo htmlspecialchars($p['title'], ENT_QUOTES, 'UTF-8'); ?></h3>
+                                <div class="product-price-group">
+                                    <?php if ($p['price_old'] > 0): ?>
+                                        <span class="product-price-old">Rp. <?php echo number_format($p['price_old'], 0, ',', '.'); ?></span>
+                                    <?php endif; ?>
+                                    <?php if ($p['discount'] > 0): ?>
+                                        <span class="product-discount"><?php echo (int)$p['discount']; ?>%</span>
+                                    <?php endif; ?>
+                                </div>
+                                <span class="product-price-new">Rp. <?php echo number_format($p['price'], 0, ',', '.'); ?></span>
                             </div>
-                            <span class="product-price-new">Rp. 21.500</span>
-                        </div>
-                        <div class="product-meta">
-                            <span>🎁 419</span>
-                            <span>⭐ 5</span>
-                        </div>
-                        <div class="product-actions">
-                            <a href="#" class="wishlist">❤️ wishlist</a>
-                            <a href="#" class="cart">🛒 +keranjang</a>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://th.bing.com/th/id/OIP.cDAM3wdTplvBhylxWZwPbgHaHa?w=200&h=200&c=7&r=0&o=7&dpr=1.4&pid=1.7&rm=3"
-                            alt="minyak sunco" class="product-img" />
-                        <div class="product-info">
-                            <span class="product-location">📍 Kota Jakarta Selatan</span>
-                            <h3 class="product-title">Minyak Goreng SunCO 2 Liter</h3>
-                            <div class="product-price-group">
-                                <span class="product-price-old">Rp. 45.000</span>
-                                <span class="product-discount">23%</span>
+                            <div class="product-meta">
+                                <span>🎁 0</span>
+                                <span>⭐ 0</span>
                             </div>
-                            <span class="product-price-new">Rp. 34.500</span>
-                        </div>
-                        <div class="product-meta">
-                            <span>🎁 64</span>
-                            <span>⭐ 5</span>
-                        </div>
-                        <div class="product-actions">
-                            <a href="#" class="wishlist">❤️ wishlist</a>
-                            <a href="#" class="cart">🛒 +keranjang</a>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://www.bing.com/th/id/OIP.QVYNJf5UpTJJKQ3GF675KQHaHa?w=195&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2"
-                            alt="beras sania" class="product-img" />
-                        <div class="product-info">
-                            <span class="product-location">📍 Kota Jakarta Selatan</span>
-                            <h3 class="product-title">Beras Sania Premiun 2,5 kg</h3>
-                            <div class="product-price-group">
-                                <span class="product-price-old">Rp. 50.000</span>
-                                <span class="product-discount">28%</span>
+                            <div class="product-actions">
+                                <a href="crud.php?edit=<?php echo (int)$p['id']; ?>" class="btn ghost" style="background:#fff;color:#333;border:1px solid #ddd;padding:.4rem .6rem;border-radius:6px;text-decoration:none;">✏️ Edit</a>
+
+                                <form method="post" action="crud.php" style="background:#fff;color:#333;border:1px solid #ddd;padding:.4rem .6rem;border-radius:6px;text-decoration:none;" onsubmit="return confirm('Hapus produk ini?');">
+                                    <input type="hidden" name="action" value="delete" />
+                                    <input type="hidden" name="id" value="<?php echo (int)$p['id']; ?>" />
+                                    <button type="submit" class="btn-danger">🗑️ Hapus</button>
+                                </form>
                             </div>
-                            <span class="product-price-new">Rp. 36.000</span>
                         </div>
-                        <div class="product-meta">
-                            <span>🎁 548</span>
-                            <span>⭐ 5</span>
-                        </div>
-                        <div class="product-actions">
-                            <a href="#" class="wishlist">❤️ wishlist</a>
-                            <a href="#" class="cart">🛒 +keranjang</a>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://www.bing.com/th/id/OIP.niosVYrsKQR_HjcHt1iPuQHaHa?w=208&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2"
-                            alt="garam cap jempol" class="product-img" />
-                        <div class="product-info">
-                            <span class="product-location">📍 Kota Jakarta Selatan</span>
-                            <h3 class="product-title">Garam Cap Jempol 250 g</h3>
-                            <div class="product-price-group">
-                                <span class="product-price-old">Rp. 5.000</span>
-                                <span class="product-discount">10%</span>
-                            </div>
-                            <span class="product-price-new">Rp. 4.500</span>
-                        </div>
-                        <div class="product-meta">
-                            <span>🎁 175</span>
-                            <span>⭐ 5</span>
-                        </div>
-                        <div class="product-actions">
-                            <a href="#" class="wishlist">❤️ wishlist</a>
-                            <a href="#" class="cart">🛒 +keranjang</a>
-                        </div>
-                    </div>
+                    <?php endforeach; endif; ?>
                 </div>
             </div>
         </section>
